@@ -25,16 +25,5 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-typeattribute vendor_fm_app coredomain;
-app_domain(vendor_fm_app)
-
-hal_client_domain(vendor_fm_app, vendor_hal_fm);
-hal_client_domain(vendor_fm_app, vendor_hal_btconfigstore);
-hal_client_domain(vendor_fm_app, vendor_hal_qspmhal);
-hal_client_domain(vendor_fm_app, vendor_hal_perf);
-
-binder_call(vendor_fm_app, gpuservice)
-allow vendor_fm_app radio_service:service_manager find;
-allow vendor_fm_app audioserver_service:service_manager find;
-allow vendor_fm_app mediaserver_service:service_manager find;
-allow vendor_fm_app app_api_service:service_manager find;
+# allow app to be a client of DSP HAL
+hal_client_domain(untrusted_app_25, vendor_hal_dspmanager)
